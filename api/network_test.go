@@ -26,12 +26,17 @@ var _ = Describe("Network", func() {
 	})
 	It("Init Client set", func() {
 		Expect(clientset).NotTo(Equal(nil))
-		api.PodNetwork(clientset)
+		data, err := api.PodNetwork(clientset, "")
+		Expect(err).NotTo(HaveOccurred())
+		fmt.Println(data)
 	})
-	It("List Nodes", func() {
+	It("List Nodes and Port", func() {
 		nodes, err := clientset.CoreV1().Nodes().List(metav1.ListOptions{})
 		Expect(err).NotTo(HaveOccurred())
 		fmt.Printf("Nodes: %d\n", len(nodes.Items))
+		pods, err := clientset.CoreV1().Pods("kube-system").List(metav1.ListOptions{})
+		Expect(err).NotTo(HaveOccurred())
+		fmt.Printf("Pods: %d\n", len(pods.Items))
 
 	})
 	It("Pod network", func() {

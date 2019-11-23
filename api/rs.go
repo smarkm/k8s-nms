@@ -1,4 +1,4 @@
-package cmd
+package api
 
 //Result API result wap
 type Result struct {

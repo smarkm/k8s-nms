@@ -14,7 +14,7 @@ var (
 )
 
 func main() {
-
+	os.Setenv("K8s_NMS_Home", "/go/src/github.com/smarkm/k8s-nms/")
 	ui := &cli.BasicUi{Reader: os.Stdin, Writer: os.Stdout, ErrorWriter: os.Stderr}
 	c := cli.NewCLI("k8s-nms", Version)
 	c.Args = os.Args[1:]
